@@ -6,12 +6,9 @@
 // import Plus from "../assets/plus.png"
 // import { useNavigate } from 'react-router-dom'
 
-
-
 // const Sidebar = () => {
 
 //    const navigate = useNavigate();
-
 
 //   return (
 //     <div className='w-[25%] h-full p-2 flex-col gap-2 text-white hidden lg:flex'>
@@ -29,7 +26,7 @@
 
 //       <div className='bg-[#121212] h-[85] rounded '>
 //         <div className='p-4 flex items-center justify-between'>
-         
+
 //           <div className='flex items-center gap-3'>
 //             <img src={Stack} alt="" />
 //             <p className='font-semibold'>Your Library</p>
@@ -60,16 +57,15 @@
 
 // export default Sidebar
 
-
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Home from "../assets/home.png";
 import Search from "../assets/search.png";
 import Stack from "../assets/stack.png";
 import Arrow from "../assets/arrow.png";
 import Plus from "../assets/plus.png";
-import Menu from "../assets/menu_icon.svg"; // Add a hamburger icon in your assets
-import Close from "../assets/cross_icon.svg"; // Add a close icon in your assets
-import { useNavigate } from 'react-router-dom';
+import Menu from "../assets/menu_icon.svg"; // hamburger icon
+import Close from "../assets/cross_icon.svg"; // close icon
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -77,27 +73,37 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Mobile Navbar (top bar) */}
-      <div className="lg:hidden flex justify-start bg-[#121212] p-4 text-white">
+      {/* 🔹 Floating Menu Icon (Top-left, no background) */}
+      <div className="lg:hidden fixed top-4 left-4 z-50">
         <img
-          src={open ? Close : Menu}
+          src={Menu}
           alt="menu"
-          className="w-6 cursor-pointer"
-          onClick={() => setOpen(!open)}
+          className="w-7 cursor-pointer"
+          onClick={() => setOpen(true)}
         />
       </div>
 
-      {/* Sidebar Container */}
+      {/* 🔹 Sidebar Container */}
       <div
         className={`fixed top-0 left-0 h-full w-[70%] sm:w-[60%] bg-[#121212] text-white flex flex-col p-4 z-50 transform ${
           open ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:w-[25%] lg:flex`}
       >
-        {/* Home / Search */}
+        {/* 🔹 Close Icon Inside Sidebar (visible only on mobile) */}
+        <div className="flex justify-end lg:hidden mb-4">
+          <img
+            src={Close}
+            alt="close"
+            className="w-6 cursor-pointer"
+            onClick={() => setOpen(false)}
+          />
+        </div>
+
+        {/* Home / Search Section */}
         <div className="bg-[#1e1e1e] rounded p-3 flex flex-col gap-4">
           <div
             onClick={() => {
-              navigate('/');
+              navigate("/");
               setOpen(false);
             }}
             className="flex items-center gap-3 cursor-pointer"
@@ -126,7 +132,7 @@ const Sidebar = () => {
             </div>
           </div>
 
-          <div className="p-4 bg-[#242424] m-2 rounded font-semibold flex flex-col items-start justify-start gap-1 pl-4">
+          <div className="p-4 bg-[#242424] m-2 rounded font-semibold flex flex-col items-start gap-1 pl-4">
             <h1>Create your first playlist</h1>
             <p className="font-light">It’s easy, we’ll help you</p>
             <button className="px-4 py-1.5 bg-white text-[15px] text-black rounded-full mt-4">
@@ -134,7 +140,7 @@ const Sidebar = () => {
             </button>
           </div>
 
-          <div className="p-4 bg-[#242424] m-2 rounded font-semibold flex flex-col items-start justify-start gap-1 pl-4 mt-4">
+          <div className="p-4 bg-[#242424] m-2 rounded font-semibold flex flex-col items-start gap-1 pl-4 mt-4">
             <h1>Find some podcasts to follow</h1>
             <p className="font-light">We’ll keep you updated on new episodes</p>
             <button className="px-4 py-1.5 bg-white text-[15px] text-black rounded-full mt-4">
@@ -144,7 +150,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* Overlay (dim background when sidebar open on mobile) */}
+      {/* 🔹 Overlay when Sidebar is Open on Mobile */}
       {open && (
         <div
           onClick={() => setOpen(false)}
@@ -156,4 +162,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
