@@ -3,7 +3,9 @@ import Sidebar from "./components/Sidebar";
 
 import Display from "./components/Display";
 import { PlayerContext } from "./context/PlayerContext";
-import Player from "./components/player";
+import User from "./components/User";
+
+
 
 const App = () => {
   const { audioRef, track } = useContext(PlayerContext);
@@ -14,7 +16,8 @@ const App = () => {
         <Sidebar />
         <Display />
       </div>
-      <Player />
+      <User />
+     
       <audio ref={audioRef} src={track.file} preload="auto"></audio>
     </div>
   );

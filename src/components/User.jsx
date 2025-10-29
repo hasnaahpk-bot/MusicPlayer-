@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { assets } from "../assets/assets";
 import { PlayerContext } from "../context/PlayerContext";
 
-const player = () => {
+const User = () => {
   const {
     track,
     seekBar,
@@ -117,4 +117,4 @@ const player = () => {
   );
 };
 
-export default player;
+export default User;
